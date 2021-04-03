@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "title": "@runnerty-executor-js",
+  "definitions": {
+    "config": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "pattern": "@runnerty-executor-js"
+        },
+        "script": {
+          "type": "string"
+        },
+        "function": {
+          "type": "string"
+        },
+        "timeout": {
+          "type": "string"
+        },
+        "debug": {
+          "type": "boolean"
+        }
+      }
+    },
+    "params": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "script": {
+          "type": "string"
+        },
+        "function": {
+          "type": "string"
+        },
+        "timeout": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": ["string", "object", "null", "integer", "array", "boolean", "number"]
+        },
+        "debug": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

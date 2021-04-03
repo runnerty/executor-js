@@ -1,0 +1,81 @@
+{
+  "$schema": "https://raw.githubusercontent.com/runnerty/schemas/master/schemas/3.2/plan.json",
+  "chains": [
+    {
+      "id": "CHAIN_JS_SAMPLE",
+      "name": "JS module example chain",
+      "defaults_processes": {
+        "notifications": {
+          "on_fail": [
+            {
+              "id": "console_default",
+              "message": "@GETDATE('YYYY-MM-DD HH:mm:ss') ERROR: PROCESS @GV(PROCESS_ID): @GV(PROCESS_EXEC_ERR_OUTPUT)",
+              "mode": "error"
+            }
+          ]
+        }
+      },
+      "processes": [
+        {
+          "id": "JS_SIMPLE_RETURN_STRING",
+          "name": "Simple JS process that returns an string",
+          "exec": {
+            "id": "js_default",
+            "script": "./js/sample.js",
+            "function": "funcString",
+            "parameters": {
+              "name": "Marty"
+            }
+          },
+          "notifications": {
+            "on_end": [
+              {
+                "id": "console_default",
+                "message": "@GV(PROCESS_ID): Greeting: @GV(PROCESS_EXEC_DATA_OUTPUT)"
+              }
+            ]
+          }
+        },
+        {
+          "id": "JS_SIMPLE_RETURN_OBJECT",
+          "name": "Simple JS process that returns an object",
+          "depends_process": ["JS_SIMPLE_RETURN_STRING"],
+          "exec": {
+            "id": "js_default",
+            "script": "./js/sample.js",
+            "function": "funcObject",
+            "parameters": {
+              "increment": 100
+            }
+          },
+          "notifications": {
+            "on_end": [
+              {
+                "id": "console_default",
+                "message": "@GV(PROCESS_ID): Score: @GV(PROCESS_EXEC_SCORE)"
+              }
+            ]
+          }
+        },
+        {
+          "id": "JS_SIMPLE_RETURN_ARRAY_OBJECT",
+          "name": "Simple JS process that returns an array of object",
+          "depends_process": ["JS_SIMPLE_RETURN_OBJECT"],
+          "exec": {
+            "id": "js_default",
+            "script": "./js/sample.js",
+            "function": "funcArrayObjects"
+          },
+          "notifications": {
+            "on_end": [
+              {
+                "id": "console_default",
+                "message": "@GV(PROCESS_ID): Name of 0: @GV(PROCESS_EXEC_0_NAME)\nJSON OUTPUT:\n@GV(PROCESS_EXEC_DATA_OUTPUT)"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "executors": [
+    {
+      "id": "js_default",
+      "type": "@runnerty-executor-js"
+    }
+  ]
+}
