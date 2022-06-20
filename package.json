@@ -1,6 +1,6 @@
 {
   "name": "@runnerty/executor-js",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Runnerty module: JS executor",
   "author": "Runnerty Tech",
   "license": "MIT",
@@ -23,13 +23,13 @@
   },
   "homepage": "https://github.com/runnerty/executor-js#readme",
   "dependencies": {
-    "@runnerty/module-core": "~3.0.5",
+    "@runnerty/module-core": "~3.1.1",
     "ms": "~2.1.3"
   },
   "devDependencies": {
-    "eslint": "^7.23.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "prettier": "^2.2.1"
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.7.1"
   }
 }
