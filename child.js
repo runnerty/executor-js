@@ -19,24 +19,24 @@ process.on('message', async params => {
         throw new Error(`function not found. Make sure you do 'module.exports = function_name' in '${params.script}'.`);
       }
     }
-    process.send(res);
+    if (res) process.send(res);
     process.exit();
   } catch (err) {
     /* eslint-disable no-console */
-    if (params.debug) console.error(err);
+    if (params.debug) console.error(JSON.stringify(err));
     /* eslint-enable no-console */
-    process.send(err.message);
+    process.send(JSON.stringify(err));
     process.exit(1);
   }
 });
 
 process.on('uncaughtException', err => {
-  process.send(err.message);
+  process.send(JSON.stringify(err));
   process.exit(1);
 });
 
 process.on('unhandledRejection', (reason, p) => {
-  process.send(reason);
+  process.send(JSON.stringify(reason));
   process.exit(1);
 });
 
