@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 'use strict';
 
 process.on('message', async params => {
@@ -22,21 +23,19 @@ process.on('message', async params => {
     if (res) process.send(res);
     process.exit();
   } catch (err) {
-    /* eslint-disable no-console */
-    if (params.debug) console.error(JSON.stringify(err));
-    /* eslint-enable no-console */
-    process.send(JSON.stringify(err));
+    if (params.debug) console.error(err);
+    process.send(serializeError(err));
     process.exit(1);
   }
 });
 
 process.on('uncaughtException', err => {
-  process.send(JSON.stringify(err));
+  process.send(serializeError(err));
   process.exit(1);
 });
 
 process.on('unhandledRejection', (reason, p) => {
-  process.send(JSON.stringify(reason));
+  process.send(serializeError(reason));
   process.exit(1);
 });
 
@@ -49,3 +48,9 @@ function exitHandler() {
 
 process.on('SIGINT', exitHandler.bind());
 process.on('SIGTERM', exitHandler.bind());
+
+function serializeError(error) {
+  return typeof error === 'object'
+    ? JSON.stringify({ name: error.name, message: error.message, stack: error.stack, ...error })
+    : error;
+}

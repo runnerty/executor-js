@@ -76,7 +76,9 @@ If your script contains several exported functions you must indicate the functio
   "function": "functionSample"
 }
 ```
+
 In the `parameters` property you can indicate any type/value you expect in your function.
+
 ```json
 {
   "id": "js_default",
@@ -85,6 +87,7 @@ In the `parameters` property you can indicate any type/value you expect in your 
   "parameters": 123
 }
 ```
+
 ```json
 {
   "id": "js_default",
@@ -109,12 +112,15 @@ In the `parameters` property you can indicate any type/value you expect in your 
 In case your function returns an object or an array of objects, you can also access each of the values individually.
 
 For example, if your function returns this object:
+
 ```json
 { "id": 1, "name": "mokka" }
 ```
+
 You can access the values with the `GETVALUE` function indicating the key: `@GV(PROCESS_EXEC_ID)`, `@GV(PROCESS_EXEC_NAME)`
 
 Si su función devuelve este array de objeto:
+
 ```json
 [
   { "id": 1, "name": "mokka" },
@@ -122,8 +128,8 @@ Si su función devuelve este array de objeto:
   { "id": 3, "name": "nela" }
 ]
 ```
-You can access the values with the `GETVALUE` function indicating the position and the key: `@GV(PROCESS_EXEC_0_ID)`, `@GV(PROCESS_EXEC_0_NAME)`
 
+You can access the values with the `GETVALUE` function indicating the position and the key: `@GV(PROCESS_EXEC_0_ID)`, `@GV(PROCESS_EXEC_0_NAME)`
 
 [runnerty]: http://www.runnerty.io
 [downloads-image]: https://img.shields.io/npm/dm/@runnerty/executor-js.svg
